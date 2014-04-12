@@ -133,13 +133,13 @@ python excel_and_json.py singlebook -o ./  -i single.xlsx
 ```
 表头最左侧是一些约定标记，这些标记表示了改行是什么参数类型：
 
--   __type__：必选标记，表示该行是字段类型
+-   ______type______：必选标记，表示该行是字段类型
 
--   __name__：必选标记，表示该行是字段名
+-   ______name______：必选标记，表示该行是字段名
 
--   __default__：可选标记，表示该行是缺省值
+-   ______default______：可选标记，表示该行是缺省值
 
--   __folding__：可选标记，表示该行是折叠属性，在高级功能中详述
+-   ______folding______：可选标记，表示该行是折叠属性，在高级功能中详述
 
 
 
@@ -316,7 +316,7 @@ python excel_and_json.py mainbook -o ./  -i main.xlsx
 
 ### 输入的workbook
 
-使用__workbook__进行标记，在后面紧接要使用的workbook名。
+使用______workbook______进行标记，在后面紧接要使用的workbook名。
 ```
 +--------------+-----------+-----------+
 | __workbook__ | workbook1 | workbook2 |
