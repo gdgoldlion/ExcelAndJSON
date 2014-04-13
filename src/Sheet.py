@@ -34,11 +34,16 @@ class Sheet:
         self.inited = False
         #字段属性列表
         self.fieldList = []
+        #引用的其他sheet名
+        self.referenceSheets = set()
+        #解析的数据
+        self.python_obj = {}
 
         self.__findRow()
         self.__findCol()
 
         self.__parseField()
+        self.__parseReferenceSheet()
 
         self.__convertPython()
         self.__executeFolding()
@@ -136,6 +141,17 @@ class Sheet:
                 else:
                     field.folding = value
 
+    def __parseReferenceSheet(self):
+        for row in range(self.dataStartRow, self.dataEndRow):
+            for col in range(1, self.dataEndCol):
+                field = self.fieldList[col]
+                fieldType = field.type
+                value = self.sh.cell(row, col).value
+
+                if fieldType == 'r':  #引用，保存引用字符串，以备插入引用表
+                    sheetName = value.split(".")[0]
+                    self.referenceSheets.add(sheetName)
+
     #转换字符串为list
     def __convertStrToList(self, str, typeStr):
         type = typeStr[1]
@@ -196,8 +212,6 @@ class Sheet:
 
     #解析自身数据为python，并折叠。不包括引用数据。
     def __convertPython(self):
-        self.python_obj = {}
-
         #dump数据#
         for row in range(self.dataStartRow, self.dataEndRow):
             recordId = self.__getRecordId(row)

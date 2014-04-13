@@ -34,6 +34,10 @@ def singlebook():
     sheetNameList = SheetManager.getSheetNameList()
 
     for sheet_name in sheetNameList:
+        #单表模式下，被引用的表不会输出
+        if SheetManager.isReferencedSheet(sheet_name):
+            continue
+
         sheetJSON = SheetManager.exportJSON(sheet_name)
 
         f = file(output_path+sheet_name+'.json', 'w')

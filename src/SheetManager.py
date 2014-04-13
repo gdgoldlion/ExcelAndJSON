@@ -30,3 +30,10 @@ def getSheetNameList():
 
 def exportJSON(name,sheet_output_field = []):
     return sheetDict[name].toJSON(sheet_output_field)
+
+def isReferencedSheet(name):
+    for sheetName in sheetDict:
+        if name in sheetDict[sheetName].referenceSheets:
+            return  True
+
+    return False
