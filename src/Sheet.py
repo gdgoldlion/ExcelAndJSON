@@ -213,6 +213,8 @@ class Sheet:
 
                 if ctype == XL_CELL_EMPTY:  #如果是空的，就填入缺省值
                     record[fieldName] = field.default
+                elif value == 'null': #null为保留字
+                    record[fieldName] = None
                 elif fieldType == 'i':
                     record[fieldName] = int(value)
                 elif fieldType == 'f':
