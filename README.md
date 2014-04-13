@@ -175,6 +175,13 @@ python excel_and_json.py singlebook -o ./  -i single.xlsx
 
 
 
+### null
+
+null为保留字，在单元格中可以直接填写null为占位符。程序最终会输出null到JSON结构中。
+
+
+
+
 **Part4.高级功能**
 ==============
 
