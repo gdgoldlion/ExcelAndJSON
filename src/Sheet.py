@@ -5,6 +5,7 @@ __email__ = 'gdgoldlion@gmail.com'
 
 import xlrd
 import json
+import math
 
 from xlrd import XL_CELL_EMPTY, XL_CELL_TEXT, XL_CELL_NUMBER, XL_CELL_DATE, XL_CELL_BOOLEAN, XL_CELL_ERROR, \
     XL_CELL_BLANK
@@ -215,20 +216,34 @@ class Sheet:
                     record[fieldName] = field.default
                 elif value == 'null': #null为保留字
                     record[fieldName] = None
-                elif fieldType == 'i':
-                    record[fieldName] = int(value)
-                elif fieldType == 'f':
-                    record[fieldName] = value
-                elif fieldType == 's':
-                    record[fieldName] = value
-                elif fieldType == 'b':
-                    record[fieldName] = bool(value)
-                elif fieldType == 'as' or fieldType == 'ai' or fieldType == 'af':
-                    record[fieldName] = self.__convertStrToList(value, fieldType)
-                elif fieldType == 'd':
-                    record[fieldName] = self.__convertStrToDict(value)
-                elif fieldType == 'r':  #引用，保存引用字符串，以备插入引用表
-                    record[fieldName] = value
+                else:
+                    #如果没有类型字段，就自动判断类型，只支持i、f、s
+                    if fieldType == '' or fieldType == None:
+                        fieldType = self.__autoDecideType(value)
+
+                    if fieldType == 'i':
+                        record[fieldName] = int(value)
+                    elif fieldType == 'f':
+                        record[fieldName] = value
+                    elif fieldType == 's':
+                        record[fieldName] = value
+                    elif fieldType == 'b':
+                        record[fieldName] = bool(value)
+                    elif fieldType == 'as' or fieldType == 'ai' or fieldType == 'af':
+                        record[fieldName] = self.__convertStrToList(value, fieldType)
+                    elif fieldType == 'd':
+                        record[fieldName] = self.__convertStrToDict(value)
+                    elif fieldType == 'r':  #引用，保存引用字符串，以备插入引用表
+                        record[fieldName] = value
+
+    def __autoDecideType(self,value):
+        if isinstance(value,float):
+            if math.ceil(value) == value:
+                return 'i'
+            else:
+                return 'f'
+        else:
+            return 's'
 
     def __executeFolding(self):
 
