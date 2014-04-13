@@ -292,14 +292,12 @@ python excel_and_json.py mainbook -o ./  -i main.xlsx
 
 ### 输出的sheet
 
-在`__workbook__`标记下面，每一行都是一个要输出sheet。每行开头为该sheet的名字。如果需要字段的选择性输出，可以在sheet名后面接要输出的字段名。如果不写，则该sheet的所有字段都会被输出。
-<table><tr><th>sheet1</th><th>aaa</th><th>skill1</th><th>skill2</th><th>skill3</th><th>option</th><th>lv1</th><th>lv2</th></tr><tr><td>sheet2</td><td>name</td><td>atk</td><td>def</td><td>hp</td><td></td><td></td><td></td></tr><tr><td>sheet3</td><td>lv1</td><td>lv2</td><td>lv3</td><td></td><td></td><td></td><td></td></tr><tr><td>sheet4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>
+在`__workbook__`标记下面，每一行都是一个要输出sheet。每行开头为该sheet的名字。
+<table><tr><th>sheet1</th><th>aaa</th><th>skill1</th><th>skill2</th><th>skill3</th><th>option</th><th>lv1</th><th>lv2</th></tr><tr><td>sheet2</td><td>name</td><td>atk</td><td>def</td><td>hp</td><td></td><td></td><td></td></tr><tr><td>sheet3</td><td>lv1</td><td>lv2</td><td>lv3</td><td></td><td></td><td></td><td></td></tr><tr><td>sheet4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>sheet4-&gt;sheet5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>
 
+-   选择输出的字段：如果需要字段的选择性输出，可以在sheet名后面接要输出的字段名。如果不写，则该sheet的所有字段都会被输出。
 
-
-
-
-
+-   表改名：支持在输出时修改表的名字，方便把一个表拆成多个。表的旧名和新名之间，用->连接。
 
 
 
