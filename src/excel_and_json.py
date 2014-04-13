@@ -92,12 +92,19 @@ def mainbook():
 
     #输出所有表#
     for sheet in sheetList:
-        sheet_name = sheet[0]
+
+        #表改名处理
+        if '->' in sheet[0]:
+            sheet_name = sheet[0].split('->')[0]
+            sheet_output_name = sheet[0].split('->')[1]
+        else:
+            sheet_output_name = sheet_name = sheet[0]
+
         sheet_output_field = sheet[1:]
 
         sheetJSON = SheetManager.exportJSON(sheet_name,sheet_output_field)
 
-        f = file(output_path+sheet_name+'.json', 'w')
+        f = file(output_path+sheet_output_name+'.json', 'w')
         f.write(sheetJSON.encode('UTF-8'))
         f.close()
 
