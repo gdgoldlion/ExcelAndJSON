@@ -313,3 +313,18 @@ python excel_and_json.py mainbook -o ./  -i main.xlsx
 
 
 
+**Part5.输出BSON**
+==============
+
+
+
+*有部分同行对JSON的读取性能表示担忧。使用BSON格式可以提高数据的读取速度，但也需要配置相应的读取库。*
+
+*实际上，在游戏开发中，JSON主要用来做一些配置信息和数值，并没有大规模的数据量，一般情况下不会成为性能瓶颈。而且因为Python不支持条件编译，增加BSON必然增加配置时间，或复杂度（通过替换文件方式）。*
+
+可以手动添加bosn的输出支持，使用下面的库即可。
+
+[https://github.com/martinkou/bson][1]
+
+
+  [1]: https://github.com/martinkou/bson
